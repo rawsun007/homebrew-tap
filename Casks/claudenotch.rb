@@ -1,14 +1,32 @@
 cask "claudenotch" do
-  version "0.8.5"
-  sha256 "a00442191802ffffb6cb05911b30e011a35dece725da5351eaa88a9a6da7ebea"
+  version "0.8.6"
+  sha256 "95dd95b8e0c5406c3a316b2ae5e3df551ab93b9218993424dfb238c5f4e57e72"
 
   url "https://github.com/rawsun007/claude-notch/releases/download/v#{version}/ClaudeNotch.dmg",
       verified: "github.com/rawsun007/claude-notch/"
   name "ClaudeNotch"
-  desc "Shows Claude Code permission prompts in your Mac's notch"
+  desc "Shows Claude Code permission prompts in the notch"
   homepage "https://github.com/rawsun007/claude-notch"
 
+  depends_on macos: :ventura
+
   app "ClaudeNotch.app"
+
+  # ClaudeNotch is a menu-bar app that stays running. On `brew upgrade`, the old
+  # copy must be quit before the new one can replace it, or the install fails
+  # with the app "in use" and the update silently does not take effect. `quit`
+  # terminates the running instance first so the swap is clean.
+  uninstall quit: "com.claudenotch.app"
+
+  # `brew uninstall --zap` also removes the app's own data: persisted state and
+  # hook scripts under ~/.claudenotch, debug/crash logs under Application
+  # Support, and the preferences plist. (Run ~/.claudenotch/bin/uninstall-hooks.sh
+  # first if you also want settings.json restored.)
+  zap trash: [
+    "~/.claudenotch",
+    "~/Library/Application Support/ClaudeNotch",
+    "~/Library/Preferences/com.claudenotch.app.plist",
+  ]
 
   caveats <<~EOS
     ClaudeNotch is ad-hoc signed (not yet notarized). On first launch:
