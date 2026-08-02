@@ -1,6 +1,6 @@
 cask "claudenotch" do
-  version "0.13.0"
-  sha256 "d4b8805dac6859c9edd99edb663cff081f17bcfe3a296ffb6ad04d433f42da50"
+  version "0.14.0"
+  sha256 "da69962b7146e28c104c0f19b3c2c78b277c070cc7e643cfba10669b19f3cc19"
 
   url "https://github.com/rawsun007/claude-notch/releases/download/v#{version}/ClaudeNotch.dmg",
       verified: "github.com/rawsun007/claude-notch/"
@@ -8,11 +8,6 @@ cask "claudenotch" do
   desc "Shows Claude Code permission prompts in the notch"
   homepage "https://github.com/rawsun007/claude-notch"
 
-  # v0.13.0 and earlier ship an arm64-only binary. Without this, Homebrew
-  # installs happily on an Intel Mac and the app then refuses to launch, which
-  # reads as a broken app rather than the wrong architecture. Drop this line
-  # once a universal build is released.
-  depends_on arch: :arm64
   depends_on macos: :ventura
 
   app "ClaudeNotch.app"
