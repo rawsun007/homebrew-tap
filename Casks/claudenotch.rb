@@ -1,6 +1,6 @@
 cask "claudenotch" do
-  version "0.33.0"
-  sha256 "869738f2506df5463f7a4608f7f949676b644b24a9038bb1adf0a6d0e00b4a6e"
+  version "0.34.0"
+  sha256 "9efb2934695f04a7eb07f6ff987fea71c99f91598abe3788f4a5b0eae7e2e549"
 
   url "https://github.com/rawsun007/claude-notch/releases/download/v#{version}/ClaudeNotch.dmg",
       verified: "github.com/rawsun007/claude-notch/"
@@ -28,11 +28,13 @@ cask "claudenotch" do
     "~/Library/Preferences/com.claudenotch.app.plist",
   ]
 
+  # No Gatekeeper-bypass step here on purpose. The DMG is signed with a
+  # Developer ID and notarized by Apple, with the ticket stapled, so the app
+  # launches on a clean machine with no prompt and no network round trip.
+  # Telling people to right-click Open when they do not need to teaches them to
+  # bypass Gatekeeper for anything calling itself ClaudeNotch.
   caveats <<~EOS
-    ClaudeNotch is ad-hoc signed (not yet notarized). On first launch:
-      right-click ClaudeNotch in /Applications and choose Open.
-
-    Then open the Setup window from the menu-bar bell to wire up the
+    Open the Setup window from the menu-bar bell to wire up the
     Claude Code hooks.
   EOS
 end
