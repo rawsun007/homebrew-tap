@@ -2,8 +2,12 @@ cask "claudenotch" do
   version "0.36.0"
   sha256 "2ab48c7ea1c0d6cdac61c6e6e9e217ff3846057dcdc4173c0e9c37b4d920c675"
 
-  url "https://github.com/rawsun007/claude-notch/releases/download/v#{version}/ClaudeNotch.dmg",
-      verified: "github.com/rawsun007/claude-notch/"
+  # No `verified:`. Homebrew deprecated it and now prints a warning naming this
+  # file and asking the user to report a bug in our tap, which is the first
+  # thing anyone installing this way sees. It was never needed: `verified` is
+  # for a download host that differs from the homepage, and both of these are
+  # github.com/rawsun007/claude-notch, so the default check already passes.
+  url "https://github.com/rawsun007/claude-notch/releases/download/v#{version}/ClaudeNotch.dmg"
   name "ClaudeNotch"
   desc "Shows Claude Code permission prompts in the notch"
   homepage "https://github.com/rawsun007/claude-notch"
