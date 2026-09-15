@@ -1,6 +1,6 @@
 cask "claudenotch" do
-  version "0.37.1"
-  sha256 "365314c1ba8680b148624abd4d7ef4eb16144f2160ec6e2c4c9804df595a38ec"
+  version "0.37.2"
+  sha256 "a7c751827ffc7d2a0259e170e929b4b0900c23976472beafd401f674b5ef0f6a"
 
   # No `verified:`. Homebrew deprecated it and now prints a warning naming this
   # file and asking the user to report a bug in our tap, which is the first
