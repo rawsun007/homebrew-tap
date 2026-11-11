@@ -1,6 +1,6 @@
 cask "claudenotch" do
-  version "0.42.2"
-  sha256 "935e95da3fc380dfa170aed7b2d2a431f91c613644f5347f6d322f29bd89fe40"
+  version "0.42.3"
+  sha256 "14aff68bc4e867f2118bb055a606ccde447d3c53afc366e0e04adccadeb07186"
 
   # No `verified:`. Homebrew deprecated it and now prints a warning naming this
   # file and asking the user to report a bug in our tap, which is the first
@@ -21,6 +21,12 @@ cask "claudenotch" do
   # with the app "in use" and the update silently does not take effect. `quit`
   # terminates the running instance first so the swap is clean.
   uninstall quit: "com.claudenotch.app"
+
+  # No `uninstall script:` for uninstall-hooks.sh, though it looks like the
+  # obvious way to unwire Claude Code on `brew uninstall`. Homebrew runs every
+  # uninstall directive except `signal` on `brew upgrade` too, so the script
+  # would strip the hooks on each update and the notch would go quiet until
+  # setup ran again. Users run ~/.claudenotch/bin/uninstall-hooks.sh themselves.
 
   # `brew uninstall --zap` also removes the app's own data: persisted state and
   # hook scripts under ~/.claudenotch, debug/crash logs under Application
